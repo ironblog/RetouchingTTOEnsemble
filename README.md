@@ -94,18 +94,42 @@ pip install torch torchvision --index-url https://download.pytorch.org/whl/cu128
 pip install -r requirements.txt
 ```
 
-Requires Python 3.10+, CUDA 12.x, and at least one NVIDIA GPU with 16+ GB VRAM.
+Requires Python 3.10+ and PyTorch with CUDA support. 
+The full ensemble is recommended to run on at least one NVIDIA GPU with 16 GB+ VRAM, although lower-memory GPUs may be used with sequential execution and slower runtime.
+
+## Dataset preparation
+
+Download the official NTIRE 2026 Photography Retouching Transfer dataset and place it under the `dataset/` directory.
+
+Expected structure:
+
+```text
+dataset/
+  Train/
+    Natural/
+    Presets/
+  Validation/
+    Natural/
+    Presets/
+  Benchmark/
+    Test/
+    Test_References/
+
+Please download the data from the official challenge links and extract it into the `dataset/` directory before running any scripts.
+**Important:** Do not use `Benchmark/` or `PRT_Competition/` for training or hyperparameter tuning.
 
 ## Running Inference
 
 ### Full pipeline
 
 ```bash
-# Two GPUs (~2.5 hours for 200 samples)
+# Two GPUs (~2 hours for 200 samples)
 bash run_inference.sh dataset/Automatic_Evaluation_Data submissions/Automatic.zip --gpus 0,1
+bash run_inference.sh dataset/Subjective_Evaluation_Data submissions/Subjective.zip --gpus 0,1
 
 # Single GPU (~5 hours)
 bash run_inference.sh dataset/Automatic_Evaluation_Data submissions/Automatic.zip --gpus 0
+bash run_inference.sh dataset/Subjective_Evaluation_Data submissions/Subjective.zip --gpus 0
 ```
 
 ### Individual components
