@@ -11,7 +11,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR /workspace/Retouching
 
-RUN python -m pip install --break-system-packages --upgrade pip
 RUN python -m pip install --break-system-packages \
     --pre torch torchvision torchaudio \
     --index-url https://download.pytorch.org/whl/nightly/cu128
