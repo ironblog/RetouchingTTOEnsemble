@@ -1,0 +1,27 @@
+services:
+  retouching:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    image: retouching:latest
+    container_name: retouching
+    working_dir: /workspace/Retouching
+    volumes:
+      - .:/workspace/Retouching
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+      - PYTHONPATH=/workspace/Retouching
+    shm_size: "64gb"
+    ulimits:
+      memlock: -1
+      stack: 67108864
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    stdin_open: true
+    tty: true
