@@ -70,7 +70,6 @@ Only the auxiliary DeepLPF component (10% ensemble weight) requires a pre-traine
 ├── infer_bg_inr.py             # Two-stage BG + INR inference
 ├── infer_deeplpf.py            # DeepLPF inference with test-time adaptation
 ├── blend_ensemble.py           # Weighted ensemble blending
-├── make_submission_zip.py      # Submission packaging
 ├── checkpoints/deeplpf.pt      # DeepLPF weights (only pre-trained component)
 ├── docker/Dockerfile
 ├── docker-compose.yml
@@ -149,17 +148,17 @@ python blend_ensemble.py \
 
 | Component | Architecture | TTA | Steps | Seed | Weight |
 |-----------|-------------|-----|-------|------|--------|
-| inr_deep_hflip | m=2, 64n | hflip | 1000 | 42 | 5 |
-| inr_strong_hflip | m=2, 64n | hflip | 1500 | 42 | 10 |
-| inr_deep_vflip | m=2, 64n | vflip | 1000 | 42 | 5 |
-| inr_strong_vflip | m=2, 64n | vflip | 1500 | 42 | 8 |
-| inr_siren_vflip | m=1, siren | vflip | 1000 | 42 | 15 |
-| inr_siren_hflip_strong | m=1, siren | hflip | 1500 | 42 | 5 |
-| inr_deep_vflip_s0 | m=2, 64n | vflip | 1000 | 0 | 5 |
-| inr_deep_vflip_s7 | m=2, 64n | vflip | 1000 | 7 | 15 |
-| deeplpf | DeepLPF | TTA | -- | -- | 10 |
-| bg_inr_hflip | BG + m=2 INR | hflip | 1000 | 42 | 7 |
-| bg_inr_vflip | BG + m=2 INR | vflip | 1000 | 42 | 5 |
+| inr_siren_vflip | m=1, siren | vflip | 1000 | 42 | **15** |
+| inr_deep_vflip_s7 | m=2, 64n | vflip | 1000 | 7 | **15** |
+| inr_strong_hflip | m=2, 64n | hflip | 1500 | 42 | **10** |
+| deeplpf | DeepLPF | TTA | -- | -- | **10** |
+| inr_strong_vflip | m=2, 64n | vflip | 1500 | 42 | **8** |
+| bg_inr_hflip | BG + m=2 INR | hflip | 1000 | 42 | **7** |
+| inr_deep_hflip | m=2, 64n | hflip | 1000 | 42 | **5** |
+| inr_deep_vflip | m=2, 64n | vflip | 1000 | 42 | **5** |
+| inr_siren_hflip_strong | m=1, siren | hflip | 1500 | 42 | **5** |
+| inr_deep_vflip_s0 | m=2, 64n | vflip | 1000 | 0 | **5** |
+| bg_inr_vflip | BG + m=2 INR | vflip | 1000 | 42 | **5** |
 
 Total weight: 90 (normalized to 1.0 during blending).
 
