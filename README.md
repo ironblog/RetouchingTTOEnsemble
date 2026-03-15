@@ -49,7 +49,7 @@ Given a reference pair (before, after) and an input image, we independently opti
 | **Bilateral Grid + INR** | 3D affine grid + INR residual | ~12K | BG captures global tone mapping; INR corrects the remaining residual |
 | **Parametric Filters** | DeepLPF-style tone curves + vignette | ~50K | Pre-trained predictor outputs filter parameters, fine-tuned per sample |
 
-The ensemble contains 11 components spanning different TTA strategies (horizontal/vertical flip), random seeds, optimization budgets, and architecture depths. A fixed weighted average in BGR space produces the final output.
+The ensemble contains 11 components spanning different TTA strategies (horizontal/vertical flip), random seeds, optimization budgets, and architecture depths. The final submission is produced by a fixed weighted average ensemble of the 11 component outputs.
 
 ## Pre-trained Checkpoints
 
